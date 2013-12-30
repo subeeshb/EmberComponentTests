@@ -1,12 +1,18 @@
-describe("Date component", function() {
+var ComponentTestingUtils = {
 
-	var App, container;
+	App: {},
+	container: null,
 
-	var boot = function(callback) {
+	getComponentName: function(componentController) {
+		return componentController.toString().split('.').slice(-1);
+	},
+
+	setupComponentForTesting: function(componentTemplateName, componentController, callback) {
 		$('body').append('<div id="test-fixture"></div>');
+		var componentName = this.getComponentName(componentController);
 
 		Ember.TEMPLATES.application = Ember.Handlebars.compile("<div>{{outlet componentContainer}}</div>");
-		Ember.TEMPLATES.componentContainer = Ember.Handlebars.compile("{{date-field}}");
+		Ember.TEMPLATES.componentContainer = Ember.Handlebars.compile("{{"+componentTemplateName+"}}");
 
 
 		Ember.run(function() {
@@ -15,7 +21,7 @@ describe("Date component", function() {
 	      rootElement: '#test-fixture'
 	    });
 
-	    App.DateFieldComponent = TestApp.DateFieldComponent.extend({});
+	    App[componentName]= componentController.extend({});
 
 	    App.IndexRoute = Ember.Route.extend({
 
@@ -43,7 +49,7 @@ describe("Date component", function() {
 
 	    container = App.__container__;
 
-	    container.register('component:date-field', App.DateFieldComponent);
+	    container.register('component:'+componentTemplateName, App[componentName]);
 
 	    
 	  });
@@ -59,23 +65,6 @@ describe("Date component", function() {
 
 	    if (callback) { callback(); }
 	  });
-	};
+	}
 
-	beforeEach(function() {
-
-	});
-
-	it("should calculate days correctly", function() {
-
-		boot(function() {
-			var TEST_DATE_INPUT = '14-05-2019';
-			var EXPECTED_OUTPUT = 'Tuesday';
-
-
-			$('.date-value-input').val(TEST_DATE_INPUT).keyup();;
-			expect($('div.day-of-week').text()).toBe(EXPECTED_OUTPUT);
-		});
-		
-	});
-
-});
+};

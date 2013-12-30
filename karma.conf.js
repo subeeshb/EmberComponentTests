@@ -16,7 +16,8 @@ module.exports = function(config) {
     files: [
         'dist/scripts/lib/lib.js',
       'dist/scripts/common/common.js',
-      'test/*.js'
+      'test/utils/componentTestingUtils.js',
+      'test/specs/*.js'
     ],
 
 
@@ -28,7 +29,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+    reporters: ['coverage'],
 
 
     // web server port
