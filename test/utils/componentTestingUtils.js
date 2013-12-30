@@ -3,17 +3,27 @@ var ComponentTestingUtils = {
 	App: {},
 	container: null,
 
+	setup: function() {
+		$('body').append('<div id="test-fixture"></div>');
+		Ember.TEMPLATES.application = Ember.Handlebars.compile("<div>{{outlet componentContainer}}</div>");
+	},
+
+	cleanup: function() {
+		Ember.run(function() {
+		    App.destroy();
+		    App = null;
+	  	});
+	},
+
 	getComponentName: function(componentController) {
 		return componentController.toString().split('.').slice(-1);
 	},
 
 	setupComponentForTesting: function(componentTemplateName, componentController, callback) {
-		$('body').append('<div id="test-fixture"></div>');
+		
 		var componentName = this.getComponentName(componentController);
-
-		Ember.TEMPLATES.application = Ember.Handlebars.compile("<div>{{outlet componentContainer}}</div>");
+		
 		Ember.TEMPLATES.componentContainer = Ember.Handlebars.compile("{{"+componentTemplateName+"}}");
-
 
 		Ember.run(function() {
 	    App = Ember.Application.create({

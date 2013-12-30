@@ -1,5 +1,13 @@
 describe("Date component", function() {
 
+	beforeEach(function() {
+		ComponentTestingUtils.setup();
+	});
+
+	afterEach(function() {
+		ComponentTestingUtils.cleanup();
+	});
+
 	it("should calculate days correctly", function() {
 
 		var TEST_DATE_INPUT = '14-05-2019';
