@@ -14,7 +14,7 @@ describe("Date component", function() {
 		var EXPECTED_OUTPUT = 'Tuesday';
 
 		ComponentTestingUtils.setupComponentForTesting('date-field', TestApp.DateFieldComponent, function() {
-			$('.date-value-input').val(TEST_DATE_INPUT).keyup();;
+			$('.date-value-input').val(TEST_DATE_INPUT).keyup();
 			expect($('div.day-of-week').text()).toBe(EXPECTED_OUTPUT);
 		});
 		
