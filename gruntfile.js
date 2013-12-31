@@ -181,7 +181,7 @@ module.exports = function(grunt) {
 //        'copy:dist',
         'htmlmin',
         'compass',
-        // 'karma'
+        'karma'
     ]);
 
     grunt.registerTask('production', [
