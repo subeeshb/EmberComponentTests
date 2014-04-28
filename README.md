@@ -1,3 +1,8 @@
+
+**This sample project was created using Ember 1.0. The helpers in this project are no longer needed when using Ember 1.5 and Ember-QUnit. Check out https://github.com/subeeshb/EmberTestingPOC for an updated example.**
+
+
+
 Ember.js component testing
 ===========================
 
